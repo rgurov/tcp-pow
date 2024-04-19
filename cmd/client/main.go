@@ -56,6 +56,8 @@ func main() {
 	}
 
 	logger.Info("got message from server: " + message)
+	logger.Info("done! waiting for signal to close")
+	<-ctx.Done()
 }
 
 func withRetries(f func() error, retries int, delay time.Duration) error {
