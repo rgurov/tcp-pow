@@ -1,0 +1,25 @@
+version: '3'
+services:
+  client:
+    container_name: client
+    build: 
+      context: .
+      dockerfile: ./deployments/client/Dockerfile
+    restart: always
+    depends_on:
+      - server
+    networks:
+      - tcppow
+  server:
+    container_name: server
+    build: 
+      context: .
+      dockerfile: ./deployments/server/Dockerfile
+    restart: always
+    ports:
+      - 7771:7771
+    networks:
+      - tcppow
+
+networks:
+  tcppow:
