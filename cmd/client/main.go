@@ -15,7 +15,7 @@ import (
 func main() {
 	host := flag.String("h", "localhost", "host")
 	port := flag.String("p", "7771", "port")
-	complexity := flag.Int("c", 4, "complexity (count of leading zeros in hash)")
+	complexity := flag.Int("c", 6, "complexity (count of leading zeros in hash)")
 	flag.Parse()
 
 	logger := slog.Default()
