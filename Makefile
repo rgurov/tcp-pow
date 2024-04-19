@@ -1,5 +1,5 @@
 docker:
-	docker compose up
+	docker compose up --build
 
 client:
 	go run cmd/client/main.go

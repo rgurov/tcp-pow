@@ -4,8 +4,10 @@ import (
 	"context"
 	"flag"
 	"log/slog"
+	"net"
 	"os/signal"
 	"syscall"
+	"time"
 
 	"github.com/rgurov/tcp-pow/pkg/client"
 )
@@ -27,7 +29,17 @@ func main() {
 		*complexity,
 	)
 
-	conn, err := c.Connect(ctx)
+	var conn net.Conn
+	err := withRetries(
+		func() error {
+			var err error
+			conn, err = c.Connect(ctx)
+			return err
+		},
+		3,
+		time.Second*3,
+	)
+
 	if err != nil {
 		panic(err)
 	}
@@ -44,4 +56,15 @@ func main() {
 	}
 
 	logger.Info("got message from server: " + message)
+}
+
+func withRetries(f func() error, retries int, delay time.Duration) error {
+	var err error
+	for i := 0; i < retries; i++ {
+		err = f()
+		if err == nil {
+			return nil
+		}
+	}
+	return err
 }
