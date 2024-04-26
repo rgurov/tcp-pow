@@ -54,3 +54,8 @@ Flags for server and client:
 8. Client receive message and wait for term signal to close
 
 This proof of work alghorithm was choosen for it's simplicity and widespread  
+
+To run tests use this:
+```bash
+make test
+```

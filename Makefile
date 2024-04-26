@@ -6,3 +6,6 @@ client:
 
 server:
 	go run cmd/server/main.go
+
+test:
+	go test ./... -count 1
