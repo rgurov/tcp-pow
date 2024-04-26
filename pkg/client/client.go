@@ -96,6 +96,7 @@ func (c *Client) ReceiveResponse(conn net.Conn) (string, error) {
 
 	length := binary.LittleEndian.Uint32(messageLength)
 	message := make([]byte, length)
+	fmt.Println(length)
 
 	_, err = conn.Read(message)
 	if err != nil && err != io.EOF {

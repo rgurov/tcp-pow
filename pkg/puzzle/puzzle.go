@@ -16,7 +16,6 @@ type Puzzle struct {
 }
 
 func NewPuzzle(initialHash [PuzzleSize]byte, complexity int) *Puzzle {
-
 	return &Puzzle{
 		initialHash: initialHash,
 		complexity:  complexity,
